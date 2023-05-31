@@ -55,4 +55,16 @@ public class ModifierAbilities {
     public void setSpeedModifier(float speedModifier) {
         SpeedModifier = speedModifier;
     }
+
+    @Override
+    public String toString() {
+        return "ModifierAbilities{" +
+                "StrengthModifier=" + StrengthModifier +
+                ", IntelligenceModifier=" + IntelligenceModifier +
+                ", DefenceModifier=" + DefenceModifier +
+                ", DexterityModifier=" + DexterityModifier +
+                ", AgilityModifier=" + AgilityModifier +
+                ", SpeedModifier=" + SpeedModifier +
+                '}';
+    }
 }

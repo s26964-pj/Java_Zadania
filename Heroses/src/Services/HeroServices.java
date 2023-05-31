@@ -1,9 +1,18 @@
 package Services;
 
 import Hero.Hero;
+import Hero.Knight;
+import Hero.Archer;
+import Hero.Mage;
+import Modifier.MageModifier;
+import Modifier.ArcherModifier;
+import Modifier.KnightModifier;
+import Modifier.Modifier;
+import Modifier.ModifierAbilities;
+
 import java.util.Scanner;
 public class HeroServices {
-    public void addExperience(Hero hero)
+    public void addSkillPoints(Hero hero)
     {
         if(hero.getPoints()==0){
             System.out.println("You have no skill upgrade points.");
@@ -51,7 +60,6 @@ public class HeroServices {
             }
         }
     }
-
     public void levelUp(Hero hero){
         hero.setLevel(hero.getLevel()+1);
         hero.setExperience(0);
@@ -62,5 +70,21 @@ public class HeroServices {
         if(hero.getLevel()==100)
             return true;
         return false;
+    }
+    public ModifierAbilities setModifier(Hero hero){
+        ModifierAbilities modifierAbilities = hero.getModifierAbilities();
+        Modifier modifier;
+
+        if(hero instanceof Mage) {
+            modifier = new MageModifier();
+        } else if(hero instanceof Archer) {
+            modifier = new ArcherModifier();
+        } else if (hero instanceof Knight) {
+            modifier = new KnightModifier();
+        } else {
+                return modifierAbilities;
+            }
+        modifier.setModifiers(modifierAbilities);
+        return modifierAbilities;
     }
 }

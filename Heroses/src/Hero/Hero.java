@@ -1,5 +1,7 @@
 package Hero;
 
+import Modifier.ModifierAbilities;
+
 import java.util.Random;
 
 public class Hero {
@@ -12,6 +14,7 @@ public class Hero {
     private int dexterity;
     private int agility;
     private int speed;
+    private ModifierAbilities modifierAbilities;
     private int points;
     private String characterClass;
 
@@ -25,8 +28,17 @@ public class Hero {
         this.dexterity = dexterity;
         this.agility = agility;
         this.speed = speed;
+        this.modifierAbilities = new ModifierAbilities();
         this.points = points;
         this.characterClass = characterClass;
+    }
+
+    public ModifierAbilities getModifierAbilities() {
+        return modifierAbilities;
+    }
+
+    public void setModifierAbilities(ModifierAbilities modifierAbilities) {
+        this.modifierAbilities = modifierAbilities;
     }
 
     public String getName() {
@@ -107,6 +119,24 @@ public class Hero {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "name='" + name + '\'' +
+                ", experience=" + experience +
+                ", level=" + level +
+                ", strength=" + strength +
+                ", defence=" + defence +
+                ", intelligence=" + intelligence +
+                ", dexterity=" + dexterity +
+                ", agility=" + agility +
+                ", speed=" + speed +
+                ", modifierAbilities=" + modifierAbilities +
+                ", points=" + points +
+                ", characterClass='" + characterClass + '\'' +
+                '}';
     }
 }
 

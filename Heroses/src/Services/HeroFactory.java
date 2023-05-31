@@ -30,8 +30,7 @@ public class HeroFactory {
         }
         return hero;
     }
-
-    public static Hero createHero(String name, String characterClass){
+    public static Hero createHero(String name ,String characterClass){
         Hero hero = null;
         switch(characterClass) {
             case "Mage":
