@@ -11,80 +11,131 @@ import Modifier.Modifier;
 import Modifier.ModifierAbilities;
 
 import java.util.Scanner;
+
 public class HeroServices {
-    public void addSkillPoints(Hero hero)
-    {
-        if(hero.getPoints()==0){
-            System.out.println("You have no skill upgrade points.");
+    public void addSkillPoints(Hero hero) {
+        if (hero.getPoints() == 0) {
+            System.out.println("Nie masz punktów ulepszeń umiejętności.");
         } else {
             int remainingPoints = hero.getPoints();
             while (remainingPoints > 0) {
-                System.out.println("You have " + remainingPoints + " experience points. How do you want to allocate them?");
-                System.out.println("1. Strength: " + hero.getStrength());
-                System.out.println("2. Defence: " + hero.getDefence());
-                System.out.println("3. Intelligence: " + hero.getIntelligence());
-                System.out.println("4. Dexterity: " + hero.getDexterity());
-                System.out.println("5. Agility: " + hero.getAgility());
-                System.out.println("6. Speed: " + hero.getSpeed());
+                System.out.println("Masz " + remainingPoints + " punktów doświadczenia. Jak chcesz je rozdysponować?");
+                System.out.println("1. Siła: " + hero.getStrength());
+                System.out.println("2. Obrona: " + hero.getDefence());
+                System.out.println("3. Intelignecja: " + hero.getIntelligence());
+                System.out.println("4. Zręczność: " + hero.getDexterity());
+                System.out.println("5. Zwinność: " + hero.getAgility());
+                System.out.println("6. Prędkość: " + hero.getSpeed());
                 Scanner scanner = new Scanner(System.in);
                 int choice = scanner.nextInt();
-                switch(choice) {
+                switch (choice) {
                     case (1):
-                        hero.setStrength(hero.getStrength()+1);
+                        hero.setStrength(hero.getStrength() + 1);
                         remainingPoints -= 1;
                         break;
                     case (2):
-                        hero.setDefence(hero.getDefence()+1);
+                        hero.setDefence(hero.getDefence() + 1);
                         remainingPoints -= 1;
                         break;
                     case (3):
-                        hero.setIntelligence(hero.getIntelligence()+1);
+                        hero.setIntelligence(hero.getIntelligence() + 1);
                         remainingPoints -= 1;
                         break;
                     case (4):
-                        hero.setDexterity(hero.getDexterity()+1);
+                        hero.setDexterity(hero.getDexterity() + 1);
                         remainingPoints -= 1;
                         break;
                     case (5):
-                        hero.setAgility(hero.getAgility()+1);
+                        hero.setAgility(hero.getAgility() + 1);
                         remainingPoints -= 1;
                         break;
                     case (6):
-                        hero.setSpeed(hero.getSpeed()+1);
+                        hero.setSpeed(hero.getSpeed() + 1);
                         remainingPoints -= 1;
                         break;
                     default:
-                        System.out.println("Invalid choice. Please choose a number from 1 to 6.");
+                        System.out.println("Nieprawidłowy wybór. Proszę wybrać numer od 1 do 6.");
                         break;
                 }
             }
         }
     }
-    public void levelUp(Hero hero){
-        hero.setLevel(hero.getLevel()+1);
-        hero.setExperience(0);
-        hero.setPoints(hero.getPoints()+10);
+
+    public void levelUp(Hero hero) {
+        if (maxLevel(hero) == false) {
+            if (hero.getLevel() == 1) {
+                hero.setPoints(hero.getPoints() + 9);
+                hero.setLevel(hero.getLevel() + 1);
+                hero.setExperience(0);
+            } else {
+                hero.setLevel(hero.getLevel() + 1);
+                hero.setExperience(0);
+                hero.setPoints(hero.getPoints() + 10);
+            }
+        } else {
+            System.out.println("Osiągnąłeś maksymalny level");
+        }
     }
 
-    public boolean maxLevel(Hero hero){
-        if(hero.getLevel()==100)
+    public boolean maxLevel(Hero hero) {
+        if (hero.getLevel() == 100)
             return true;
         return false;
     }
-    public ModifierAbilities setModifier(Hero hero){
+
+    public ModifierAbilities setModifier(Hero hero) {
         ModifierAbilities modifierAbilities = hero.getModifierAbilities();
         Modifier modifier;
 
-        if(hero instanceof Mage) {
+        if (hero instanceof Mage) {
             modifier = new MageModifier();
-        } else if(hero instanceof Archer) {
+        } else if (hero instanceof Archer) {
             modifier = new ArcherModifier();
         } else if (hero instanceof Knight) {
             modifier = new KnightModifier();
         } else {
-                return modifierAbilities;
-            }
+            return modifierAbilities;
+        }
         modifier.setModifiers(modifierAbilities);
         return modifierAbilities;
+    }
+
+    //    public void calculateModifier(Hero hero){
+//        ModifierAbilities modifierAbilities = hero.getModifierAbilities();
+//        setModifier(hero);
+//        float resultStrength = hero.getStrength() * hero.getModifierAbilities().getStrengthModifier();
+//        System.out.println(resultStrength);
+//        float resultDefence = hero.getDefence() * hero.getModifierAbilities().getDefenceModifier();
+//        System.out.println(resultDefence);
+//        float resultIntelligence = hero.getIntelligence() * hero.getModifierAbilities().getIntelligenceModifier();
+//        System.out.println(resultIntelligence);
+//        float resultDexterity = hero.getDexterity() * hero.getModifierAbilities().getDexterityModifier();
+//        System.out.println(resultDexterity);
+//        float resultAgility = hero.getAgility() * hero.getModifierAbilities().getAgilityModifier();
+//        System.out.println(resultAgility);
+//        float resultSpeed = hero.getSpeed() * hero.getModifierAbilities().getSpeedModifier();
+//        System.out.println(resultSpeed);
+//    }
+    public void calculateModifiers(Hero hero) {
+        ModifierAbilities modifierAbilities = hero.getModifierAbilities();
+        setModifier(hero);
+
+        float resultStrength = hero.getStrength() * modifierAbilities.getStrengthModifier();
+        float resultDefence = hero.getDefence() * modifierAbilities.getDefenceModifier();
+        float resultIntelligence = hero.getIntelligence() * modifierAbilities.getIntelligenceModifier();
+        float resultDexterity = hero.getDexterity() * modifierAbilities.getDexterityModifier();
+        float resultAgility = hero.getAgility() * modifierAbilities.getAgilityModifier();
+        float resultSpeed = hero.getSpeed() * modifierAbilities.getSpeedModifier();
+
+        printModifiers(resultStrength, resultDefence, resultIntelligence, resultDexterity, resultAgility, resultSpeed);
+    }
+
+    public void printModifiers(float strength, float defence, float intelligence, float dexterity, float agility, float speed) {
+        System.out.println("Strength: " + strength);
+        System.out.println("Defence: " + defence);
+        System.out.println("Intelligence: " + intelligence);
+        System.out.println("Dexterity: " + dexterity);
+        System.out.println("Agility: " + agility);
+        System.out.println("Speed: " + speed);
     }
 }

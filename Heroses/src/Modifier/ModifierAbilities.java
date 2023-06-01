@@ -58,13 +58,12 @@ public class ModifierAbilities {
 
     @Override
     public String toString() {
-        return "ModifierAbilities{" +
-                "StrengthModifier=" + StrengthModifier +
-                ", IntelligenceModifier=" + IntelligenceModifier +
-                ", DefenceModifier=" + DefenceModifier +
-                ", DexterityModifier=" + DexterityModifier +
-                ", AgilityModifier=" + AgilityModifier +
-                ", SpeedModifier=" + SpeedModifier +
+        return "{Strength=" + StrengthModifier +
+                ", Intelligence=" + IntelligenceModifier +
+                ", Defence=" + DefenceModifier +
+                ", Dexterity=" + DexterityModifier +
+                ", Agility=" + AgilityModifier +
+                ", Speed=" + SpeedModifier +
                 '}';
     }
 }

@@ -5,43 +5,36 @@ import Hero.Mage;
 import Hero.Archer;
 import Hero.Knight;
 import Hero.Hero;
+import java.util.Scanner;
 public class HeroFactory {
 
-    public static String getRandomName() {
+    public String getRandomName() {
         String[] names = {"Anna", "John", "Emily", "Michael", "Emma", "David", "Olivia", "Daniel", "Sophia", "James", "Isabella", "Matthew", "Mia", "Alexander", "Ava"};
         Random random = new Random();
         int index = random.nextInt(names.length);
         return names[index];
     }
-
-    public static Hero createRandomHero(String characterClass){
-        String name = getRandomName();
-        Hero hero = null;
-        switch(characterClass) {
-            case "Mage":
-                hero = new Mage(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Mage");
-                break;
-            case "Archer":
-                hero = new Archer(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Archer");
-                break;
-            case "Knight":
-                hero = new Knight(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Knight");
-                break;
-        }
-        return hero;
+    public String getRandomClas() {
+        String[] clas = {"Mage","Archer","Knight"};
+        Random random = new Random();
+        int index = random.nextInt(clas.length);
+        return clas[index];
     }
-    public static Hero createHero(String name ,String characterClass){
+    public Hero createHero(String characterClass){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Podaj imię bohatera: ");
+        String name = scanner.next();
         Hero hero = null;
         switch(characterClass) {
             case "Mage":
                 hero = new Mage(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Mage");
-                break;
+                return hero;
             case "Archer":
                 hero = new Archer(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Archer");
-                break;
+                return hero;
             case "Knight":
                 hero = new Knight(name, 0, 1, 1, 1, 1, 1, 1, 1, 0, "Knight");
-                break;
+                return hero;
         }
         return hero;
     }

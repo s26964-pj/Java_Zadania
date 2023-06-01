@@ -36,7 +36,6 @@ public class Hero {
     public ModifierAbilities getModifierAbilities() {
         return modifierAbilities;
     }
-
     public void setModifierAbilities(ModifierAbilities modifierAbilities) {
         this.modifierAbilities = modifierAbilities;
     }
@@ -119,24 +118,6 @@ public class Hero {
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    @Override
-    public String toString() {
-        return "Hero{" +
-                "name='" + name + '\'' +
-                ", experience=" + experience +
-                ", level=" + level +
-                ", strength=" + strength +
-                ", defence=" + defence +
-                ", intelligence=" + intelligence +
-                ", dexterity=" + dexterity +
-                ", agility=" + agility +
-                ", speed=" + speed +
-                ", modifierAbilities=" + modifierAbilities +
-                ", points=" + points +
-                ", characterClass='" + characterClass + '\'' +
-                '}';
     }
 }
 
