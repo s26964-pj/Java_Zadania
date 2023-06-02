@@ -14,15 +14,14 @@ public class Menu {
     HeroFactory heroFactory = new HeroFactory();
     Scanner scanner = new Scanner(System.in);
     char x = '1';
-    Hero hero;
 
     public void gra() {
         x = 0;
-        hero = createHero1();
+        Hero hero = heroFactory.createHero(DisplayHero());
         play(hero);
     }
 
-    public Hero createHero1() {
+    public String DisplayHero() {
         System.out.println("\n******Start Gry******\n");
         System.out.println("Tworzenie bohatera");
         System.out.println("1 - Mage");
@@ -31,17 +30,11 @@ public class Menu {
         x = scanner.next().charAt(0);
         switch (x) {
             case '1':
-                Mage mage = (Mage) heroFactory.createHero("Mage");
-                System.out.println("Stworzono postać: " + mage.getName());
-                return mage;
+                return "Mage";
             case '2':
-                Archer archer = (Archer) heroFactory.createHero("Archer");
-                System.out.println("Stworzono postać: " + archer.getName());
-                return archer;
+                return "Archer";
             case '3':
-                Knight knight = (Knight) heroFactory.createHero("Knight");
-                System.out.println("Stworzono postać: " + knight.getName());
-                return knight;
+                return "Knight";
             default:
                 return null;
         }
