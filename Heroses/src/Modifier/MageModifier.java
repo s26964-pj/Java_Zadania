@@ -1,6 +1,6 @@
 package Modifier;
 
-public class MageModifier implements Modifier{
+public class MageModifier implements Modifier {
     @Override
     public void setModifiers(ModifierAbilities modifierAbilities) {
         modifierAbilities.setStrengthModifier(1.00f);

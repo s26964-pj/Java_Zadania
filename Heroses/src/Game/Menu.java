@@ -1,11 +1,11 @@
 package Game;
 
-import Hero.Mage;
 import Hero.Archer;
+import Hero.Hero;
 import Hero.Knight;
+import Hero.Mage;
 import Services.HeroFactory;
 import Services.HeroServices;
-import Hero.Hero;
 
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class Menu {
     }
 
     public Hero createHero1() {
-        System.out.println("******Start Gry******");
+        System.out.println("\n******Start Gry******\n");
         System.out.println("Tworzenie bohatera");
         System.out.println("1 - Mage");
         System.out.println("2 - Archer");
@@ -62,7 +62,8 @@ public class Menu {
                     break;
                 case '3':
                     hero.getName();
-                    System.out.println("Imię: " + hero.getName());
+                    System.out.println("\nImię: " + hero.getName());
+                    System.out.println("Klasa: " + hero.getCharacterClass());
                     heroServices.calculateModifiers(hero);
                     break;
                 case '0':

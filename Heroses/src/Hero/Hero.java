@@ -2,8 +2,6 @@ package Hero;
 
 import Modifier.ModifierAbilities;
 
-import java.util.Random;
-
 public class Hero {
     private String name;
     private int experience;
@@ -36,6 +34,7 @@ public class Hero {
     public ModifierAbilities getModifierAbilities() {
         return modifierAbilities;
     }
+
     public void setModifierAbilities(ModifierAbilities modifierAbilities) {
         this.modifierAbilities = modifierAbilities;
     }
@@ -118,6 +117,10 @@ public class Hero {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public String getCharacterClass() {
+        return characterClass;
     }
 }
 
